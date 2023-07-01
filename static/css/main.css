@@ -2,19 +2,23 @@ html, body {
     height: 100%;
 }
 
-.rounded-right {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
 .link {
     font-weight: bold;
-    color: blue;
+    color: gray;
     cursor: pointer;
 }
 
 .link:hover {
     text-decoration: underline;
+}
+
+#video-background {
+  position: fixed;
+  right: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
 }
