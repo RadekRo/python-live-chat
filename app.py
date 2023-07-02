@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, jsonify
 import mimetypes
 
 mimetypes.add_type('application/javascript', '.js')
@@ -12,9 +12,12 @@ def index():
 def chat():
     return render_template('chat.html')
 
-@app.route("/chat/add_message")
+@app.route("/chat/add_message", methods = ["GET", "POST"])
 def add_message():
-    message = request.form.get('message')
+    message = request.json['messageInputText']
+    print(message)
+    data = {'data': message}
+    return jsonify(data)
 
 
 if __name__ == '__main__':

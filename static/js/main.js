@@ -6,7 +6,7 @@ messageInput.addEventListener('keydown', function(event) {
         fetch('/chat/add_message', {
             method: 'POST',
             headers: {
-                'Content-Type': 'appllication/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({messageInputText})
         })
