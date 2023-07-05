@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, jsonify, session
+from flask import Flask, render_template, url_for, request, jsonify, session, redirect
 import mimetypes
 import bcrypt
 
@@ -10,11 +10,14 @@ app.secret_key = bcrypt.gensalt()
 def index():
     return render_template('index.html')
 
-@app.route("/chat")
+@app.route("/chat", methods = ["POST", "GET"])
 def chat():
-    
-    session['username'] = 'Radek'
-    return render_template('chat.html')
+    if request.method == "POST":
+        user = request.form.get('user-name')
+        session['username'] = user
+        return redirect('/chat')
+    else:
+        return render_template('chat.html')
 
 @app.route("/chat/add_message", methods = ["GET", "POST"])
 def add_message():
