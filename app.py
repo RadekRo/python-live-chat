@@ -17,7 +17,7 @@ def chat():
         session['username'] = user
         return redirect('/chat')
     else:
-        return render_template('chat.html')
+        return render_template('chat.html', username = session.get('username'))
 
 @app.route("/chat/add_message", methods = ["GET", "POST"])
 def add_message():
