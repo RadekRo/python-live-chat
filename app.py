@@ -12,13 +12,17 @@ def index():
 
 @app.route("/chat", methods = ["POST", "GET"])
 def chat():
-    if request.method == "POST":
-        user = request.form.get('user-name')
-        session['username'] = user
-        return redirect('/chat')
-    else:
-        return render_template('chat.html', username = session.get('username'))
-
+        if request.method == "POST":
+            user = request.form.get('user-name')
+            session['username'] = user
+            return redirect('/chat')
+        else:
+            if session.get('username'):
+                return render_template('chat.html', username = session.get('username'))
+            else:
+                print('Error. Operation forbidden!')
+                return render_template('index.html')
+        
 @app.route("/chat/add_message", methods = ["GET", "POST"])
 def add_message():
     message = request.json['messageInputText']
