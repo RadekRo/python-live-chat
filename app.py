@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, jsonify, session, redirect
 import mimetypes
 import bcrypt
+from data import queries
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
@@ -27,6 +28,7 @@ def chat():
 def add_message():
     message = request.json['messageInputText']
     user = session.get('username')
+    queries.add_message(message, user)
     data = {'data': message, 'user': user}
     return jsonify(data)
 
