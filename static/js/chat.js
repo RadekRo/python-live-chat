@@ -18,3 +18,9 @@ messageInput.addEventListener('keydown', function(event) {
         })
     }
 });
+
+function checkMessages() {
+    console.log('messages checked!')
+}
+
+setInterval(checkMessages, 1000);
