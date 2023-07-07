@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, jsonify, session, redirect
+from flask import Flask, render_template, url_for, request, jsonify, session, redirect, datetime
 import mimetypes
 import bcrypt
 from data import queries
@@ -28,7 +28,8 @@ def chat():
 def add_message():
     message = request.json['messageInputText']
     user = session.get('username')
-    queries.add_message(message, user)
+    date_and_time = datetime.now().strftime('%Y-%m-%d %H:%M')
+    queries.add_message(message, user, date_and_time)
     data = {'data': message, 'user': user}
     return jsonify(data)
 
