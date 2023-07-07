@@ -1,7 +1,8 @@
-from flask import Flask, render_template, url_for, request, jsonify, session, redirect, datetime
+from flask import Flask, render_template, url_for, request, jsonify, session, redirect
 import mimetypes
 import bcrypt
 from data import queries
+from datetime import datetime
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
@@ -29,6 +30,7 @@ def add_message():
     message = request.json['messageInputText']
     user = session.get('username')
     date_and_time = datetime.now().strftime('%Y-%m-%d %H:%M')
+    print(message, user, date_and_time)
     queries.add_message(message, user, date_and_time)
     data = {'data': message, 'user': user}
     return jsonify(data)
