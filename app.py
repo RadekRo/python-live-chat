@@ -21,9 +21,12 @@ def chat():
         else:
             if session.get('username'):
                 messages_archive = queries.get_messages_archive()
-                session['last_message_id'] = messages_archive[-1]['id']
-                return render_template('chat.html', username = session.get('username'),
-                                                    messages = messages_archive)
+                if (len(messages_archive) > 0):
+                    session['last_message_id'] = messages_archive[-1]['id']
+                    return render_template('chat.html', username = session.get('username'),
+                                                        messages = messages_archive)
+                else:
+                    return render_template('chat.html', username = session.get('username'))                                                        
             else:
                 print('Error. Operation forbidden!')
                 return render_template('index.html')

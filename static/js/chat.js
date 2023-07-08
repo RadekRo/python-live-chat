@@ -31,7 +31,7 @@ function checkMessages() {
             console.log(response[0])
             for (let i = 0; i < response.length; i++)  {
                     let new_message = document.createElement('div');
-                    new_message.innerHTML = `<span class="h5 pe-3">${response[i]['user_name']}</span><span class="h6">${response[i]['submission_date']}</span><br/>${response[i]['message']}`
+                    new_message.innerHTML = `<span class="message-user pe-3"><i class="fa-solid fa-circle-user me-1"></i>${response[i]['user_name']}</span><span class="message-date">${response[i]['submission_date']}</span><br/><span class="message-body">${response[i]['message']}</span>`
                     messagesWindow.appendChild(new_message);
             }
         }
