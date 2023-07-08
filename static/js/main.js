@@ -2,7 +2,6 @@ const chatEntry = document.getElementById('open_chat');
 
 chatEntry.addEventListener('submit', function(event) {
     event.preventDefault();
-    console.log('submitted');
     const formData = new FormData(this);
     fetch('/chat', {
         method: 'POST',

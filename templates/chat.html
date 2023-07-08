@@ -13,7 +13,9 @@
     <div class="container d-flex justify-content-center align-items-end h-100">
         <main style="width: 100%">
             <div id="messages_window" class="px-3 mb-2">
-                <div><span class="h5 pe-3">user</span><span class="h6">date</span><br/>Wiadomość</div>
+                {% for message in messages %}
+                <div><span class="h5 pe-3">{{ message['user_name'] }}</span><span class="h6">{{ message['submission_date'] }}</span><br/>{{ message['message'] }}</div>
+                {% endfor %}
             </div>
             <div class="px-3 py-2 border-top d-flex justify-content-end align-items-center">
                 <i class="fa-regular fa-circle-user px-2"></i> {{ username }}
