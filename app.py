@@ -43,12 +43,15 @@ def add_message():
 
 @app.route("/chat/check_messages", methods = ["POST", "GET"])
 def check_messages():
-     new_messages = queries.get_new_messages(session.get('last_message_id'))
-     if len(new_messages) > 0:
-          session['last_message_id'] = new_messages[-1]['id']
-          return jsonify(new_messages)
-     else:
-          return jsonify({'messages': 'NONE'})
+    if session.get('last_message_id'):  
+        new_messages = queries.get_new_messages(session.get('last_message_id'))
+    else:
+        new_messages = queries.get_messages_archive()
+    if len(new_messages) > 0:
+        session['last_message_id'] = new_messages[-1]['id']
+        return jsonify(new_messages)
+    else:
+        return jsonify({'messages': 'NONE'})
 
 if __name__ == '__main__':
     app()
